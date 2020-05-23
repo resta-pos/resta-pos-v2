@@ -26,7 +26,7 @@
   </style>
 </head>
 <body>
-  <h1>Electron Auto Update Example</h1>
+  <h1>Electron Auto Update Example - Resta</h1>
   <p id="version"></p>
   <div id="notification" class="hidden">
     <p id="message"></p>
@@ -43,7 +43,7 @@
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
-    
+
     ipcRenderer.send('app_version');
     ipcRenderer.on('app_version', (event, arg) => {
       ipcRenderer.removeAllListeners('app_version');
@@ -66,7 +66,7 @@
     function closeNotification() {
       notification.classList.add('hidden');
     }
-    
+
     function restartApp() {
       ipcRenderer.send('restart_app');
     }
