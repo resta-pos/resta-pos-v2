@@ -1,9 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
-
-autoUpdater.logger.transports.file.level = "info";
-autoUpdater.autoDownload = true;
-
 let mainWindow;
 
 function createWindow () {
@@ -24,6 +20,7 @@ function createWindow () {
 }
 
 app.on('ready', () => {
+  console.error('hereee')
   createWindow();
 });
 
@@ -59,3 +56,14 @@ autoUpdater.on("error", err => {
   console.log("AutoUpdater error");
   console.log(err);
 });
+
+autoUpdater.on("update-not-available", err => {
+  console.log("AutoUpdater not available");
+  console.log(err);
+});
+
+autoUpdater.checkForUpdates()
+  .then((response) => {
+    console.log('got update!')
+  })
+  .catch((error) => console.log('error', error))
