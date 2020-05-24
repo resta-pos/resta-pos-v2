@@ -22,6 +22,7 @@ function createWindow () {
 
   mainWindow.once('ready-to-show', () => {
     log.info('ready to show')
+    mainWindow.show();
     autoUpdater.checkForUpdatesAndNotify();
   });
 }
