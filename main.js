@@ -1,7 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
-autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = "info";
 autoUpdater.autoDownload = true;
 
@@ -57,6 +56,6 @@ ipcMain.on('restart_app', () => {
 });
 
 autoUpdater.on("error", err => {
-  log.error("AutoUpdater error");
-  log.error(err);
+  console.log("AutoUpdater error");
+  console.log(err);
 });
