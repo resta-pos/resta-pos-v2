@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
+const log = require('electron-log');
+
 let mainWindow;
 
 function createWindow () {
@@ -20,7 +22,7 @@ function createWindow () {
 }
 
 app.on('ready', () => {
-  console.error('hereee')
+  log.info('hereee')
   createWindow();
 });
 
@@ -53,17 +55,11 @@ ipcMain.on('restart_app', () => {
 });
 
 autoUpdater.on("error", err => {
-  console.log("AutoUpdater error");
-  console.log(err);
+  log.error("AutoUpdater error");
+  log.error(err);
 });
 
 autoUpdater.on("update-not-available", err => {
-  console.log("AutoUpdater not available");
-  console.log(err);
+  log.error("AutoUpdater not available");
+  log.error(err);
 });
-
-autoUpdater.checkForUpdates()
-  .then((response) => {
-    console.log('got update!')
-  })
-  .catch((error) => console.log('error', error))
