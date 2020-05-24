@@ -11,11 +11,15 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
     },
+    show: false,
   });
   mainWindow.loadFile('index.html');
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
+  log.info('checkForUpdatesAndNotify')
+
   mainWindow.once('ready-to-show', () => {
     log.info('ready to show')
     autoUpdater.checkForUpdatesAndNotify();
