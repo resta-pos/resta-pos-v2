@@ -2,7 +2,21 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const log = require('electron-log');
 
+require('./src/db');
+const createPDF = require('./src/printer')
+
 let mainWindow;
+
+
+const data = {
+  title: "A new Brazilian School",
+  date: "05/12/2018",
+  name: "Rodolfo Luis Marcos",
+  age: 28,
+  birthdate: "12/07/1990",
+  course: "Computer Science",
+  obs: "Graduated in 2014 by Federal University of Lavras, work with Full-Stack development and E-commerce."
+}
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -23,6 +37,7 @@ function createWindow () {
   mainWindow.once('ready-to-show', () => {
     log.info('ready to show')
     mainWindow.show();
+    createPDF(data);
     autoUpdater.checkForUpdatesAndNotify();
   });
 }
@@ -40,7 +55,6 @@ app.on('window-all-closed', function () {
 
 app.on('activate', function () {
   if (mainWindow === null) {
-    log.info('activate!')
     createWindow();
   }
 });

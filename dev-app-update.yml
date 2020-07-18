@@ -1,0 +1,6 @@
+appId: com.resta-pos.desktop
+provider: github
+token: 1755e76756594248ebde28cd5f6ab39b42ee3430
+private: true
+owner: resta-pos
+repo: resta-pos-v2
